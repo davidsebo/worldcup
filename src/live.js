@@ -59,6 +59,7 @@ export function mapLiveToFixtures(apiMatches) {
     const direct = hc === entry.home
     out[entry.key] = {
       status: m.status,
+      utcDate: m.utcDate,
       homeScore: direct ? m.homeScore : m.awayScore,
       awayScore: direct ? m.awayScore : m.homeScore,
     }

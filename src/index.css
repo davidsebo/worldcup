@@ -502,6 +502,7 @@ tr.wrong .pick-note {
 }
 .fx {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
   padding: 5px 4px;
@@ -532,6 +533,17 @@ tr.wrong .pick-note {
 }
 .fx.inactive .stepper {
   pointer-events: none;
+}
+.fx-when {
+  flex-basis: 100%;
+  text-align: center;
+  font-family: 'Oswald';
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--chalk);
+  margin-bottom: 1px;
 }
 .score-wrap {
   display: inline-flex;

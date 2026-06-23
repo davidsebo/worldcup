@@ -19,6 +19,19 @@ GROUPS.forEach((g) =>
   }),
 )
 
+const fmtWhen = (iso) => {
+  if (!iso) return null
+  const d = new Date(iso)
+  if (isNaN(d.getTime())) return null
+  return d.toLocaleString(undefined, {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  })
+}
+
 function Flag({ code }) {
   const slug = FLAG[code]
   if (!slug) return null
@@ -56,6 +69,7 @@ function Fixture({ group, idx, mt, scores, setScore, toggleActive, live, editing
   const status = live && live.status
   const liveNow = isLiveStatus(status)
   const finished = mt.played || isFinishedStatus(status)
+  const when = live && fmtWhen(live.utcDate)
 
   const home = (
     <span className="side home">
@@ -90,6 +104,7 @@ function Fixture({ group, idx, mt, scores, setScore, toggleActive, live, editing
     const cls = hs > as ? 'win-h' : hs < as ? 'win-a' : ''
     return (
       <div className={'fx ' + cls}>
+        {when && <span className="fx-when">{when}</span>}
         {home}
         <span className="score-wrap">
           <button
@@ -136,6 +151,7 @@ function Fixture({ group, idx, mt, scores, setScore, toggleActive, live, editing
       onClick={() => toggleActive(key)}
       title={active ? 'Click to exclude this result' : 'Click to include this result'}
     >
+      {when && <span className="fx-when">{when}</span>}
       {home}
       <span className="score" onClick={active ? (e) => e.stopPropagation() : undefined}>
         <Stepper value={hs} onChange={(v) => setScore(key, v, as)} />
