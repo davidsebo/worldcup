@@ -147,10 +147,6 @@ export default function App() {
           <div className="brand">
             <span className="eyebrow">World Cup 2026 · Pool Room</span>
             <h1>Final-Standings Scenario Simulator</h1>
-            <span className="sub">
-              Set every remaining result and watch your picks score. Tiebreakers: points → goal
-              difference → goals → head-to-head.
-            </span>
           </div>
           <div className="scorebug">
             <div className="bug total">
