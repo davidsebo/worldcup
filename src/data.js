@@ -164,7 +164,7 @@ export const TIPS = {
     { label: 'Note', text: 'Only an Algeria win swaps your middle two.' },
   ] },
   K: { tagline: 'ceiling 7/7 · Portugal won 5-0, one game left for them', bullets: [
-    { label: 'Root for', text: 'Portugal to beat Colombia in their finale (locks 1st — they already beat Uzbekistan 5-0) · Colombia to beat DR Congo (2nd) · Uzbekistan to beat DR Congo in their head-to-head, with DR Congo also losing to Colombia → Uzbekistan 3rd, DR Congo 4th.' },
+    { label: 'Root for', text: 'Portugal to beat Colombia in their finale (locks 1st — they already beat Uzbekistan 5-0) · Colombia to beat or draw DR Congo (either gets them 2nd) · Uzbekistan to beat DR Congo → Uzbekistan 3rd, DR Congo 4th.' },
   ] },
   L: { tagline: 'ceiling 7/7 · open, Croatia is the swing', bullets: [
     { label: 'Root for', text: 'England to win both (1st) · Croatia to win both (beat Panama, then Ghana) to climb from 0 to 2nd · Ghana losing to both England and Croatia → Ghana 3rd · Panama losing out → 4th.' },
