@@ -345,6 +345,12 @@ td.team {
   background: #edeff3;
   color: var(--ink-soft);
 }
+tr.correct {
+  background: #e3f4ea;
+}
+tr.wrong {
+  background: #f8e6e6;
+}
 tr.correct .rank {
   background: var(--green);
   color: #fff;
