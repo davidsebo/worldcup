@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import { NAME, GROUPS, DREAM, POINTS, ORD } from './data.js'
+import { NAME, GROUPS, DREAM, POINTS, ORD, TIPS } from './data.js'
 import { computeRows, scoreGroup, initScores } from './standings.js'
 
 function Stepper({ value, onChange }) {
@@ -52,12 +52,36 @@ function GroupCard({ group, scores, setScore }) {
   const gp = scoreGroup(group, rows)
   const remaining = group.matches.filter((x) => !x.played).length
   const allPlayed = remaining === 0
+  const [showTip, setShowTip] = useState(false)
+  const tip = TIPS[group.id]
   return (
     <div className="card">
       <div className="card-head">
         <div>
           <div className="gid">
             Group <b>{group.id}</b>
+            {tip && (
+              <span className="tip-wrap">
+                <button
+                  className="tip-btn"
+                  aria-label="Strategy for this group"
+                  aria-expanded={showTip}
+                  onClick={() => setShowTip((v) => !v)}
+                >
+                  ?
+                </button>
+                {showTip && (
+                  <span className="tip-pop" role="dialog">
+                    <span className="tip-tag">{tip.tagline}</span>
+                    {tip.bullets.map((b, i) => (
+                      <span className="tip-row" key={i}>
+                        <b>{b.label}:</b> {b.text}
+                      </span>
+                    ))}
+                  </span>
+                )}
+              </span>
+            )}
           </div>
           <div className="status">
             {allPlayed ? 'final' : remaining + ' game' + (remaining > 1 ? 's' : '') + ' left'}

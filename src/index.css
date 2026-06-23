@@ -181,7 +181,11 @@ body {
   border: 1px solid var(--line);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: visible;
+}
+.card .fixtures {
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
 }
 .card-head {
   display: flex;
@@ -199,6 +203,77 @@ body {
 }
 .card-head .gid b {
   color: var(--gold);
+}
+.tip-wrap {
+  position: relative;
+  display: inline-block;
+  margin-left: 6px;
+}
+.tip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--line);
+  color: var(--ink-soft);
+  font-family: 'Oswald';
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: background 0.15s, color 0.15s;
+}
+.tip-btn:hover,
+.tip-btn[aria-expanded='true'] {
+  background: var(--gold);
+  color: #fff;
+}
+.tip-pop {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  z-index: 20;
+  display: block;
+  width: 280px;
+  max-width: 78vw;
+  padding: 12px 13px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+}
+.tip-tag {
+  display: block;
+  font-family: 'Oswald';
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.tip-row {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink);
+  margin-bottom: 7px;
+}
+.tip-row:last-child {
+  margin-bottom: 0;
+}
+.tip-row b {
+  color: var(--ink);
+  font-weight: 700;
 }
 .card-head .status {
   font-size: 11px;
