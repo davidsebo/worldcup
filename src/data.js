@@ -82,7 +82,7 @@ export const GROUPS = [
     m('ARG', 'JOR', 0, 0, false), m('AUT', 'DZA', 0, 0, false)] },
   { id: 'K', picks: ['POR', 'COL', 'UZB', 'COD'], matches: [
     m('COL', 'UZB', 1, 0, true), m('POR', 'COD', 0, 0, true),
-    m('POR', 'UZB', 0, 0, false), m('COL', 'COD', 0, 0, false),
+    m('POR', 'UZB', 5, 0, true), m('COL', 'COD', 0, 0, false),
     m('COL', 'POR', 0, 0, false), m('COD', 'UZB', 0, 0, false)] },
   { id: 'L', picks: ['ENG', 'CRO', 'GHA', 'PAN'], matches: [
     m('ENG', 'CRO', 4, 2, true), m('GHA', 'PAN', 1, 0, true),
@@ -103,7 +103,7 @@ export const DREAM = {
   'H-4': [1, 1], 'H-5': [1, 1],
   'I-4': [0, 1], 'I-5': [1, 0],
   'J-4': [2, 0], 'J-5': [1, 0],
-  'K-2': [1, 0], 'K-3': [1, 0], 'K-4': [0, 1], 'K-5': [0, 1],
+  'K-3': [1, 0], 'K-4': [0, 1], 'K-5': [0, 1],
   'L-2': [1, 0], 'L-3': [0, 1], 'L-4': [1, 0], 'L-5': [0, 1],
 }
 
