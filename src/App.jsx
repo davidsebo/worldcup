@@ -259,9 +259,8 @@ export default function App() {
             </button>
           </div>
         </div>
-      </div>
 
-      <div className="standings-bar">
+        <div className="standings-bar">
         <div className="leaderboard">
           {PEOPLE.map((p) => {
             const pts = perPerson[p] || 0
@@ -284,6 +283,7 @@ export default function App() {
           <span className="swatch">
             <span className="dot" style={{ background: 'var(--red)' }}></span>Miss
           </span>
+        </div>
         </div>
       </div>
 

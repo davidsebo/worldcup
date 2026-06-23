@@ -171,11 +171,12 @@ body {
 
 /* ---- grid ---- */
 .standings-bar {
+  max-width: 1280px;
+  margin: 14px auto 0;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
-  margin: 0 0 24px;
 }
 .standings-bar .legend {
   margin: 0;
