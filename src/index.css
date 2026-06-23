@@ -533,6 +533,54 @@ tr.wrong .pick-note {
 .fx.inactive .stepper {
   pointer-events: none;
 }
+.score-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.live-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Oswald';
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: #fff;
+  border-radius: 999px;
+  padding: 2px 9px;
+  cursor: pointer;
+}
+.live-toggle.editing {
+  background: var(--card);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: livePulse 1s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
+}
 .fx.win-h .home .tname,
 .fx.win-a .away .tname {
   color: var(--ink);

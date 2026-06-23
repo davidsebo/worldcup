@@ -1,6 +1,8 @@
 import { useState, useMemo, useCallback } from 'react'
 import { NAME, GROUPS, DREAM, POINTS, ORD, TIPS, FLAG, PICKER } from './data.js'
 import { computeRows, scoreGroup, initScores } from './standings.js'
+import { useLiveScores } from './useLiveScores.js'
+import { isLiveStatus, isFinishedStatus } from './live.js'
 
 const PEOPLE = ['Singer', 'Kyle', 'Spencer', 'Sebo']
 const PERSON_MAX = {}
@@ -8,6 +10,14 @@ GROUPS.forEach((g) => {
   const o = PICKER[g.id]
   PERSON_MAX[o] = (PERSON_MAX[o] || 0) + 7
 })
+
+// Games hardcoded as played in data.js stay authoritative (never overwritten by the live feed).
+const PLAYED_KEYS = new Set()
+GROUPS.forEach((g) =>
+  g.matches.forEach((mt, i) => {
+    if (mt.played) PLAYED_KEYS.add(g.id + '-' + i)
+  }),
+)
 
 function Flag({ code }) {
   const slug = FLAG[code]
@@ -37,53 +47,109 @@ function Stepper({ value, onChange }) {
   )
 }
 
-function Fixture({ group, idx, mt, scores, setScore, toggleActive }) {
+function Fixture({ group, idx, mt, scores, setScore, toggleActive, live, editing, onToggleLiveEdit }) {
   const key = group.id + '-' + idx
   const s = scores[key]
   const hs = s ? s.hs : mt.hs
   const as = s ? s.as : mt.as
-  const active = mt.played || (s ? !!s.active : false)
-  const cls = mt.played
-    ? 'played'
-    : !active
-    ? 'inactive'
-    : hs > as
-    ? 'win-h'
-    : hs < as
-    ? 'win-a'
-    : ''
-  return (
-    <div
-      className={'fx ' + cls}
-      onClick={mt.played ? undefined : () => toggleActive(key)}
-      title={mt.played ? undefined : active ? 'Click to exclude this result' : 'Click to include this result'}
-    >
-      <span className="side home">
-        <Flag code={mt.h} />
-        <span className="tname">{NAME[mt.h]}</span>
-      </span>
-      {mt.played ? (
+
+  const status = live && live.status
+  const liveNow = isLiveStatus(status)
+  const finished = mt.played || isFinishedStatus(status)
+
+  const home = (
+    <span className="side home">
+      <Flag code={mt.h} />
+      <span className="tname">{NAME[mt.h]}</span>
+    </span>
+  )
+  const away = (
+    <span className="side away">
+      <span className="tname">{NAME[mt.a]}</span>
+      <Flag code={mt.a} />
+    </span>
+  )
+
+  // Final result — a hardcoded played game, or a live game that has ended.
+  if (finished) {
+    return (
+      <div className="fx played">
+        {home}
         <span className="played-score">
           {hs}
           <span style={{ color: 'var(--chalk)' }}>–</span>
           {as} <span className="ft">FT</span>
         </span>
-      ) : (
-        <span className="score" onClick={active ? (e) => e.stopPropagation() : undefined}>
-          <Stepper value={hs} onChange={(v) => setScore(key, v, as)} />
-          <span className="dash">–</span>
-          <Stepper value={as} onChange={(v) => setScore(key, hs, v)} />
+        {away}
+      </div>
+    )
+  }
+
+  // In-play — LIVE by default (read-only), toggle to EDIT to play a hypothetical.
+  if (liveNow) {
+    const cls = hs > as ? 'win-h' : hs < as ? 'win-a' : ''
+    return (
+      <div className={'fx ' + cls}>
+        {home}
+        <span className="score-wrap">
+          <button
+            className={'live-toggle' + (editing ? ' editing' : '')}
+            onClick={() => onToggleLiveEdit(key)}
+            title={
+              editing
+                ? 'Showing your edit — click for the live score'
+                : 'Live score — click to edit a hypothetical'
+            }
+          >
+            {editing ? (
+              'EDIT'
+            ) : (
+              <>
+                <span className="live-dot" />
+                LIVE
+              </>
+            )}
+          </button>
+          {editing ? (
+            <span className="score">
+              <Stepper value={hs} onChange={(v) => setScore(key, v, as)} />
+              <span className="dash">–</span>
+              <Stepper value={as} onChange={(v) => setScore(key, hs, v)} />
+            </span>
+          ) : (
+            <span className="played-score">
+              {hs}
+              <span style={{ color: 'var(--chalk)' }}>–</span>
+              {as}
+            </span>
+          )}
         </span>
-      )}
-      <span className="side away">
-        <span className="tname">{NAME[mt.a]}</span>
-        <Flag code={mt.a} />
+        {away}
+      </div>
+    )
+  }
+
+  // Not started — click-to-include behavior.
+  const active = s ? !!s.active : false
+  const cls = !active ? 'inactive' : hs > as ? 'win-h' : hs < as ? 'win-a' : ''
+  return (
+    <div
+      className={'fx ' + cls}
+      onClick={() => toggleActive(key)}
+      title={active ? 'Click to exclude this result' : 'Click to include this result'}
+    >
+      {home}
+      <span className="score" onClick={active ? (e) => e.stopPropagation() : undefined}>
+        <Stepper value={hs} onChange={(v) => setScore(key, v, as)} />
+        <span className="dash">–</span>
+        <Stepper value={as} onChange={(v) => setScore(key, hs, v)} />
       </span>
+      {away}
     </div>
   )
 }
 
-function GroupCard({ group, scores, setScore, toggleActive }) {
+function GroupCard({ group, scores, setScore, toggleActive, live, editKeys, toggleLiveEdit }) {
   const rows = useMemo(() => computeRows(group, scores), [group, scores])
   const gp = scoreGroup(group, rows)
   const remaining = group.matches.filter((x) => !x.played).length
@@ -194,6 +260,9 @@ function GroupCard({ group, scores, setScore, toggleActive }) {
                 scores={scores}
                 setScore={setScore}
                 toggleActive={toggleActive}
+                live={live[group.id + '-' + idx]}
+                editing={editKeys.has(group.id + '-' + idx)}
+                onToggleLiveEdit={toggleLiveEdit}
               />
             ),
         )}
@@ -213,22 +282,60 @@ export default function App() {
     [],
   )
 
+  const live = useLiveScores()
+  // keys the user flipped from LIVE to EDIT (so they can play out a hypothetical)
+  const [editKeys, setEditKeys] = useState(() => new Set())
+
+  // Overlay live data on top of the manual scores:
+  // finished games lock to their result; in-play games show the live score
+  // unless the user toggled that game into EDIT mode.
+  const effectiveScores = useMemo(() => {
+    const out = { ...scores }
+    for (const key in live) {
+      if (PLAYED_KEYS.has(key)) continue // trust hardcoded results
+      const L = live[key]
+      if (isFinishedStatus(L.status)) {
+        out[key] = { hs: L.homeScore, as: L.awayScore, active: true }
+      } else if (isLiveStatus(L.status) && !editKeys.has(key)) {
+        out[key] = { hs: L.homeScore, as: L.awayScore, active: true }
+      }
+    }
+    return out
+  }, [scores, live, editKeys])
+
+  const toggleLiveEdit = useCallback(
+    (key) => {
+      setEditKeys((prev) => {
+        const next = new Set(prev)
+        if (next.has(key)) {
+          next.delete(key) // back to LIVE
+        } else {
+          next.add(key) // into EDIT — seed steppers from the current live score
+          const L = live[key]
+          if (L) setScore(key, L.homeScore, L.awayScore)
+        }
+        return next
+      })
+    },
+    [live, setScore],
+  )
+
   const total = useMemo(() => {
     let t = 0
     GROUPS.forEach((g) => {
-      t += scoreGroup(g, computeRows(g, scores))
+      t += scoreGroup(g, computeRows(g, effectiveScores))
     })
     return t
-  }, [scores])
+  }, [effectiveScores])
 
   const perPerson = useMemo(() => {
     const t = {}
     GROUPS.forEach((g) => {
       const o = PICKER[g.id]
-      t[o] = (t[o] || 0) + scoreGroup(g, computeRows(g, scores))
+      t[o] = (t[o] || 0) + scoreGroup(g, computeRows(g, effectiveScores))
     })
     return t
-  }, [scores])
+  }, [effectiveScores])
   const lead = useMemo(() => Math.max(...PEOPLE.map((p) => perPerson[p] || 0)), [perPerson])
 
   return (
@@ -292,9 +399,12 @@ export default function App() {
           <GroupCard
             key={g.id}
             group={g}
-            scores={scores}
+            scores={effectiveScores}
             setScore={setScore}
             toggleActive={toggleActive}
+            live={live}
+            editKeys={editKeys}
+            toggleLiveEdit={toggleLiveEdit}
           />
         ))}
       </div>
