@@ -138,12 +138,30 @@ body {
   transform: translateY(-1px);
 }
 .btn.primary {
-  background: var(--ink);
   color: #fff;
-  border-color: var(--ink);
+  border-color: transparent;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5, #21d4fd, #43e97b, #ffd166, #ff6ec4);
+  background-size: 250% 100%;
+  animation: rootGradient 9s ease infinite;
+}
+@keyframes rootGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .btn.primary:hover {
-  background: #000;
+  filter: brightness(1.06) saturate(1.1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn.primary {
+    animation: none;
+  }
 }
 .btn.ghost {
   background: transparent;
@@ -615,6 +633,8 @@ tr.wrong .pick-note {
   }
   .topbar .topbar-inner:first-child .scorebug {
     flex: none;
+    position: relative;
+    top: 10px;
   }
   /* leaderboard: four across, tighter, full-width */
   .leaderboard {
