@@ -243,11 +243,10 @@ export default function App() {
           </div>
           <div className="legend" style={{ marginLeft: 'auto' }}>
             <span className="swatch">
-              <span className="dot" style={{ background: 'var(--green)' }}></span>pick lands the slot
-              (+pts)
+              <span className="dot" style={{ background: 'var(--green)' }}></span>Correct
             </span>
             <span className="swatch">
-              <span className="dot" style={{ background: 'var(--red)' }}></span>miss
+              <span className="dot" style={{ background: 'var(--red)' }}></span>Miss
             </span>
           </div>
         </div>
