@@ -165,10 +165,10 @@ export default function App() {
         <div className="topbar-inner" style={{ marginTop: 0 }}>
           <div className="presets">
             <button className="btn primary" onClick={() => setScores(initScores(DREAM))}>
-              Load root-for ceiling
+              What to root for
             </button>
             <button className="btn ghost" onClick={() => setScores(initScores(null))}>
-              Reset remaining to 0–0
+              Reset games to 0-0
             </button>
           </div>
           <div className="legend" style={{ marginLeft: 'auto' }}>
