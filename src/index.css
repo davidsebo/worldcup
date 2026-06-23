@@ -622,4 +622,9 @@ tr.wrong .pick-note {
   .lb-max {
     font-size: 13px;
   }
+  /* stack the preset buttons so the color key can sit higher beside them */
+  .presets {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
