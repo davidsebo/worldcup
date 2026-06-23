@@ -238,7 +238,7 @@ export default function App() {
               What to root for
             </button>
             <button className="btn ghost" onClick={() => setScores(initScores(null))}>
-              Reset games to 0-0
+              Reset all games
             </button>
           </div>
           <div className="legend" style={{ marginLeft: 'auto' }}>
