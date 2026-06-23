@@ -237,7 +237,7 @@ export default function App() {
         <div className="topbar-inner">
           <div className="brand">
             <span className="eyebrow">World Cup 2026 · Pool Room</span>
-            <h1>Final-Standings Scenario Simulator</h1>
+            <h1>Final Standings Scenario Simulator</h1>
           </div>
           <div className="scorebug">
             <div className="bug total">

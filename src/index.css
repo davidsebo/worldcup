@@ -214,12 +214,6 @@ body {
   color: var(--chalk);
   font-size: 17px;
 }
-@media (max-width: 640px) {
-  .leaderboard {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
@@ -596,5 +590,36 @@ tr.wrong .pick-note {
   }
   .grid {
     grid-template-columns: 1fr;
+  }
+  /* keep title + total on one row, let the title wrap to two lines */
+  .topbar .topbar-inner:first-child {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .topbar .topbar-inner:first-child .brand {
+    flex: 1;
+    min-width: 0;
+  }
+  .topbar .topbar-inner:first-child .scorebug {
+    flex: none;
+  }
+  /* leaderboard: four across, tighter, full-width */
+  .leaderboard {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .lb-card {
+    padding: 7px 8px;
+  }
+  .lb-name {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+  }
+  .lb-pts {
+    font-size: 22px;
+  }
+  .lb-max {
+    font-size: 13px;
   }
 }
