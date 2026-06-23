@@ -170,6 +170,55 @@ body {
 }
 
 /* ---- grid ---- */
+.leaderboard {
+  margin: 0 0 26px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.lb-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 13px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.lb-card.leading {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold), var(--shadow);
+}
+.lb-name {
+  font-family: 'Oswald';
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.lb-card.leading .lb-name {
+  color: var(--gold);
+}
+.lb-pts {
+  font-family: 'Bebas Neue';
+  font-size: 42px;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+.lb-max {
+  font-family: 'Bebas Neue';
+  color: var(--chalk);
+  font-size: 24px;
+}
+@media (max-width: 640px) {
+  .leaderboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));

@@ -2,6 +2,13 @@ import { useState, useMemo, useCallback } from 'react'
 import { NAME, GROUPS, DREAM, POINTS, ORD, TIPS, FLAG, PICKER } from './data.js'
 import { computeRows, scoreGroup, initScores } from './standings.js'
 
+const PEOPLE = ['Singer', 'Kyle', 'Spencer', 'Sebo']
+const PERSON_MAX = {}
+GROUPS.forEach((g) => {
+  const o = PICKER[g.id]
+  PERSON_MAX[o] = (PERSON_MAX[o] || 0) + 7
+})
+
 function Flag({ code }) {
   const slug = FLAG[code]
   if (!slug) return null
@@ -214,6 +221,16 @@ export default function App() {
     return t
   }, [scores])
 
+  const perPerson = useMemo(() => {
+    const t = {}
+    GROUPS.forEach((g) => {
+      const o = PICKER[g.id]
+      t[o] = (t[o] || 0) + scoreGroup(g, computeRows(g, scores))
+    })
+    return t
+  }, [scores])
+  const lead = useMemo(() => Math.max(...PEOPLE.map((p) => perPerson[p] || 0)), [perPerson])
+
   return (
     <>
       <div className="topbar">
@@ -250,6 +267,22 @@ export default function App() {
             </span>
           </div>
         </div>
+      </div>
+
+      <div className="leaderboard">
+        {PEOPLE.map((p) => {
+          const pts = perPerson[p] || 0
+          const leading = pts > 0 && pts === lead
+          return (
+            <div className={'lb-card' + (leading ? ' leading' : '')} key={p}>
+              <span className="lb-name">{p}</span>
+              <span className="lb-pts">
+                {pts}
+                <span className="lb-max"> / {PERSON_MAX[p]}</span>
+              </span>
+            </div>
+          )
+        })}
       </div>
 
       <div className="grid">
