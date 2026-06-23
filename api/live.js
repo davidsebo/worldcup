@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     }))
 
     // Cache at Vercel's edge so many visitors don't burn the rate limit.
-    res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60')
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120')
     res.status(200).json({ matches })
   } catch (e) {
     res.status(200).json({ matches: [], error: 'fetch-failed' })
