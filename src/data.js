@@ -130,7 +130,7 @@ export const TIPS = {
   ] },
   E: { tagline: 'ceiling 2/7 · weakest group', bullets: [
     { label: 'Dead', text: "Ecuador 1st (can't catch Germany) and Germany 2nd (Germany wins the group)." },
-    { label: 'Long shot for 2 pts', text: 'Ecuador to beat Germany and Ivory Coast to only draw Curaçao → Ivory Coast 3rd, Curaçao 4th.' },
+    { label: 'Long shot for 2 pts', text: 'Ecuador to beat Germany by 2+ goals (the margin matters for the goal-difference tiebreaker with Ivory Coast) and Ivory Coast to only draw Curaçao → Ivory Coast 3rd, Curaçao 4th.' },
     { label: 'Safe single point', text: 'Curaçao loses → Curaçao 4th.' },
   ] },
   F: { tagline: 'ceiling 7/7 · needs a Sweden upset', bullets: [
