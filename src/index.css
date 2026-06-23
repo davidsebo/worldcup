@@ -542,8 +542,8 @@ tr.wrong .pick-note {
   font-size: 9.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--chalk);
-  margin-bottom: 1px;
+  color: var(--ink-soft);
+  margin-bottom: -5px;
 }
 .score-wrap {
   display: inline-flex;
