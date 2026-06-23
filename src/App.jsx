@@ -241,11 +241,11 @@ export default function App() {
           </div>
           <div className="scorebug">
             <div className="bug total">
+              <span className="lbl">Your score</span>
               <span className="num">
                 {total}
                 <span className="denom"> /84</span>
               </span>
-              <span className="lbl">Your score</span>
             </div>
           </div>
         </div>
