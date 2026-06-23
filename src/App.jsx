@@ -71,6 +71,12 @@ function GroupCard({ group, scores, setScore }) {
                   ?
                 </button>
                 {showTip && (
+                  <span
+                    className="tip-backdrop"
+                    onClick={() => setShowTip(false)}
+                  />
+                )}
+                {showTip && (
                   <span className="tip-pop" role="dialog">
                     <span className="tip-tag">{tip.tagline}</span>
                     {tip.bullets.map((b, i) => (

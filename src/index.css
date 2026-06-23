@@ -226,7 +226,15 @@ body {
   line-height: 1;
   cursor: pointer;
   vertical-align: middle;
+  position: relative;
+  top: -2px;
   transition: background 0.15s, color 0.15s;
+}
+.tip-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+  display: block;
 }
 .tip-btn:hover,
 .tip-btn[aria-expanded='true'] {
