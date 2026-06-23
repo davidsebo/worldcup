@@ -539,32 +539,62 @@ tr.wrong .pick-note {
   align-items: center;
   gap: 4px;
 }
-.live-toggle {
+.live-switch {
+  position: relative;
   display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  width: 104px;
+  padding: 2px;
+  border: none;
+  border-radius: 999px;
+  background: var(--line-soft);
+  cursor: pointer;
   font-family: 'Oswald';
   font-weight: 700;
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
+  font-size: 9px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: 1px solid var(--green);
-  background: var(--green);
-  color: #fff;
-  border-radius: 999px;
-  padding: 2px 9px;
-  cursor: pointer;
 }
-.live-toggle.editing {
-  background: var(--card);
-  color: var(--ink);
-  border-color: var(--ink);
+.live-switch .seg {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 3px 0;
+  color: var(--chalk);
+  transition: color 0.2s;
+}
+.live-knob {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  width: calc(50% - 2px);
+  border-radius: 999px;
+  transition: left 0.22s ease, background 0.22s;
+}
+.live-switch.on-live .live-knob {
+  left: 2px;
+  background: var(--green);
+}
+.live-switch.on-edit .live-knob {
+  left: 50%;
+  background: var(--ink);
+}
+.live-switch.on-live .seg.live {
+  color: #fff;
+}
+.live-switch.on-edit .seg.edit {
+  color: #fff;
 }
 .live-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #fff;
+  background: currentColor;
+}
+.live-switch.on-live .seg.live .live-dot {
   animation: livePulse 1s ease-in-out infinite;
 }
 @keyframes livePulse {

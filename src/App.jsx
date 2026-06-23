@@ -93,7 +93,7 @@ function Fixture({ group, idx, mt, scores, setScore, toggleActive, live, editing
         {home}
         <span className="score-wrap">
           <button
-            className={'live-toggle' + (editing ? ' editing' : '')}
+            className={'live-switch' + (editing ? ' on-edit' : ' on-live')}
             onClick={() => onToggleLiveEdit(key)}
             title={
               editing
@@ -101,14 +101,12 @@ function Fixture({ group, idx, mt, scores, setScore, toggleActive, live, editing
                 : 'Live score — click to edit a hypothetical'
             }
           >
-            {editing ? (
-              'EDIT'
-            ) : (
-              <>
-                <span className="live-dot" />
-                LIVE
-              </>
-            )}
+            <span className="live-knob" />
+            <span className="seg live">
+              <span className="live-dot" />
+              LIVE
+            </span>
+            <span className="seg edit">EDIT</span>
           </button>
           {editing ? (
             <span className="score">
