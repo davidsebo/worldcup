@@ -679,6 +679,9 @@ tr.wrong .pick-note {
   border: 1px solid var(--line);
   border-radius: 4px;
   padding: 1px 4px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
 .played-score {
   font-family: 'Oswald';
