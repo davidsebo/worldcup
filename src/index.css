@@ -140,9 +140,9 @@ body {
 .btn.primary {
   color: #fff;
   border-color: transparent;
-  background: linear-gradient(90deg, #ff6ec4, #7873f5, #21d4fd, #43e97b, #ffd166, #ff6ec4);
+  background: linear-gradient(90deg, #d6478f, #5b4fd1, #1597c4, #28b85f, #c98f1f, #d6478f);
   background-size: 250% 100%;
-  animation: rootGradient 9s ease infinite;
+  animation: rootGradient 11s ease infinite;
 }
 @keyframes rootGradient {
   0% {
