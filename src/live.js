@@ -15,10 +15,10 @@ const ALIAS = {
   USA: ['unitedstates'],
   CZE: ['czechrepublic'],
   CIV: ['cotedivoire'],
-  CPV: ['caboverde'],
+  CPV: ['caboverde', 'capeverdeislands'],
   COD: ['congodr', 'drcongo', 'democraticrepublicofthecongo'],
   TUR: ['turkey'],
-  BIH: ['bosniaandherzegovina'],
+  BIH: ['bosniaandherzegovina', 'bosniaherzegovina'],
   IRN: ['iriran'],
 }
 
@@ -66,5 +66,5 @@ export function mapLiveToFixtures(apiMatches) {
   return out
 }
 
-export const isLiveStatus = (s) => s === 'IN_PLAY' || s === 'PAUSED'
+export const isLiveStatus = (s) => s === 'IN_PLAY' || s === 'PAUSED' || s === 'LIVE'
 export const isFinishedStatus = (s) => s === 'FINISHED'
