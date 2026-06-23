@@ -147,6 +147,7 @@ body {
 }
 .btn.ghost {
   background: transparent;
+  border-color: var(--ink);
 }
 .legend {
   margin-top: 12px;
