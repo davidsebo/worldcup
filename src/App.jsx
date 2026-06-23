@@ -258,31 +258,33 @@ export default function App() {
               Reset all games
             </button>
           </div>
-          <div className="legend" style={{ marginLeft: 'auto' }}>
-            <span className="swatch">
-              <span className="dot" style={{ background: 'var(--green)' }}></span>Correct
-            </span>
-            <span className="swatch">
-              <span className="dot" style={{ background: 'var(--red)' }}></span>Miss
-            </span>
-          </div>
         </div>
       </div>
 
-      <div className="leaderboard">
-        {PEOPLE.map((p) => {
-          const pts = perPerson[p] || 0
-          const leading = pts > 0 && pts === lead
-          return (
-            <div className={'lb-card' + (leading ? ' leading' : '')} key={p}>
-              <span className="lb-name">{p}</span>
-              <span className="lb-pts">
-                {pts}
-                <span className="lb-max"> / {PERSON_MAX[p]}</span>
-              </span>
-            </div>
-          )
-        })}
+      <div className="standings-bar">
+        <div className="leaderboard">
+          {PEOPLE.map((p) => {
+            const pts = perPerson[p] || 0
+            const leading = pts > 0 && pts === lead
+            return (
+              <div className={'lb-card' + (leading ? ' leading' : '')} key={p}>
+                <span className="lb-name">{p}</span>
+                <span className="lb-pts">
+                  {pts}
+                  <span className="lb-max"> / {PERSON_MAX[p]}</span>
+                </span>
+              </div>
+            )
+          })}
+        </div>
+        <div className="legend">
+          <span className="swatch">
+            <span className="dot" style={{ background: 'var(--green)' }}></span>Correct
+          </span>
+          <span className="swatch">
+            <span className="dot" style={{ background: 'var(--red)' }}></span>Miss
+          </span>
+        </div>
       </div>
 
       <div className="grid">

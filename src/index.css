@@ -170,8 +170,18 @@ body {
 }
 
 /* ---- grid ---- */
-.leaderboard {
+.standings-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
   margin: 0 0 24px;
+}
+.standings-bar .legend {
+  margin: 0;
+  flex: none;
+}
+.leaderboard {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 150px));
   gap: 10px;
@@ -622,9 +632,13 @@ tr.wrong .pick-note {
   .lb-max {
     font-size: 13px;
   }
-  /* stack the preset buttons so the color key can sit higher beside them */
-  .presets {
-    flex-direction: column;
-    align-items: flex-start;
+  /* legend moves above the leaderboard (column-reverse keeps it on top) */
+  .standings-bar {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .standings-bar .legend {
+    justify-content: center;
   }
 }
