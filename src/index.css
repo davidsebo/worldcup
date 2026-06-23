@@ -633,9 +633,9 @@ tr.wrong .pick-note {
   .lb-max {
     font-size: 13px;
   }
-  /* legend moves above the leaderboard (column-reverse keeps it on top) */
+  /* legend sits below the leaderboard on mobile */
   .standings-bar {
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: stretch;
     gap: 10px;
   }
