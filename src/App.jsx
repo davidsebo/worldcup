@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import { NAME, GROUPS, DREAM, POINTS, ORD, TIPS, FLAG } from './data.js'
+import { NAME, GROUPS, DREAM, POINTS, ORD, TIPS, FLAG, PICKER } from './data.js'
 import { computeRows, scoreGroup, initScores } from './standings.js'
 
 function Flag({ code }) {
@@ -155,7 +155,7 @@ function GroupCard({ group, scores, setScore, toggleActive }) {
                     {NAME[r.code]}
                   </div>
                   <div className="pick-note">
-                    your pick: {predIdx >= 0 ? ORD[predIdx] : '—'}
+                    {PICKER[group.id] || 'Your'}'s pick: {predIdx >= 0 ? ORD[predIdx] : '—'}
                   </div>
                 </td>
                 <td>{r.P}</td>

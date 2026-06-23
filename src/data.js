@@ -110,6 +110,14 @@ export const DREAM = {
 export const POINTS = [3, 2, 1, 1] // 1st, 2nd, 3rd, 4th
 export const ORD = ['1st', '2nd', '3rd', '4th']
 
+// Who made the picks in each group.
+export const PICKER = {
+  A: 'Singer', E: 'Singer', I: 'Singer',
+  B: 'Kyle', F: 'Kyle', J: 'Kyle',
+  C: 'Spencer', G: 'Spencer', K: 'Spencer',
+  D: 'Sebo', H: 'Sebo', L: 'Sebo',
+}
+
 // Strategy tooltips per group — shown via the "?" icon in each header.
 export const TIPS = {
   A: { tagline: 'ceiling 7/7 · all live', bullets: [
