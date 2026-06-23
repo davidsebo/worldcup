@@ -86,7 +86,7 @@ function GroupCard({ group, scores, setScore }) {
             const correct = group.picks[idx] === r.code
             const predIdx = group.picks.indexOf(r.code)
             return (
-              <tr key={r.code} className={correct ? 'correct' : ''}>
+              <tr key={r.code} className={correct ? 'correct' : 'wrong'}>
                 <td className="l">
                   <span className="rank">{idx + 1}</span>
                 </td>
@@ -177,7 +177,7 @@ export default function App() {
               (+pts)
             </span>
             <span className="swatch">
-              <span className="dot" style={{ background: '#EDEFF3' }}></span>miss
+              <span className="dot" style={{ background: 'var(--red)' }}></span>miss
             </span>
           </div>
         </div>

@@ -280,6 +280,13 @@ tr.correct .rank {
 tr.correct .pick-note {
   color: var(--green);
 }
+tr.wrong .rank {
+  background: var(--red);
+  color: #fff;
+}
+tr.wrong .pick-note {
+  color: var(--red);
+}
 .ptspill {
   display: inline-block;
   min-width: 30px;
