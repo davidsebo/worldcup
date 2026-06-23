@@ -351,6 +351,17 @@ tr.correct .rank {
 }
 .tname {
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.flag {
+  flex: none;
+  width: 18px;
+  height: 13px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(19, 24, 31, 0.1);
 }
 .pick-note {
   font-size: 10.5px;

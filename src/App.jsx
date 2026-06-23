@@ -1,6 +1,20 @@
 import { useState, useMemo, useCallback } from 'react'
-import { NAME, GROUPS, DREAM, POINTS, ORD, TIPS } from './data.js'
+import { NAME, GROUPS, DREAM, POINTS, ORD, TIPS, FLAG } from './data.js'
 import { computeRows, scoreGroup, initScores } from './standings.js'
+
+function Flag({ code }) {
+  const slug = FLAG[code]
+  if (!slug) return null
+  return (
+    <img
+      className="flag"
+      src={`https://flagcdn.com/${slug}.svg`}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+    />
+  )
+}
 
 function Stepper({ value, onChange }) {
   return (
@@ -25,6 +39,7 @@ function Fixture({ group, idx, mt, scores, setScore }) {
   return (
     <div className={'fx ' + cls}>
       <span className="side home">
+        <Flag code={mt.h} />
         <span className="tname">{NAME[mt.h]}</span>
       </span>
       {mt.played ? (
@@ -42,6 +57,7 @@ function Fixture({ group, idx, mt, scores, setScore }) {
       )}
       <span className="side away">
         <span className="tname">{NAME[mt.a]}</span>
+        <Flag code={mt.a} />
       </span>
     </div>
   )
@@ -121,7 +137,10 @@ function GroupCard({ group, scores, setScore }) {
                   <span className="rank">{idx + 1}</span>
                 </td>
                 <td className="team">
-                  <div className="tname">{NAME[r.code]}</div>
+                  <div className="tname">
+                    <Flag code={r.code} />
+                    {NAME[r.code]}
+                  </div>
                   <div className="pick-note">
                     your pick: {predIdx >= 0 ? ORD[predIdx] : '—'}
                   </div>

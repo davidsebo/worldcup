@@ -20,6 +20,22 @@ export const NAME = {
   ENG: 'England', GHA: 'Ghana', PAN: 'Panama', CRO: 'Croatia',
 }
 
+// flagcdn slug per team code (ISO 3166-1 alpha-2; subdivisions for ENG/SCO)
+export const FLAG = {
+  MEX: 'mx', KOR: 'kr', CZE: 'cz', RSA: 'za',
+  CAN: 'ca', SUI: 'ch', BIH: 'ba', QAT: 'qa',
+  BRA: 'br', MAR: 'ma', SCO: 'gb-sct', HTI: 'ht',
+  USA: 'us', AUS: 'au', PAR: 'py', TUR: 'tr',
+  GER: 'de', CIV: 'ci', ECU: 'ec', CUW: 'cw',
+  NED: 'nl', JPN: 'jp', SWE: 'se', TUN: 'tn',
+  EGY: 'eg', IRN: 'ir', BEL: 'be', NZL: 'nz',
+  ESP: 'es', URU: 'uy', CPV: 'cv', KSA: 'sa',
+  FRA: 'fr', NOR: 'no', SEN: 'sn', IRQ: 'iq',
+  ARG: 'ar', AUT: 'at', DZA: 'dz', JOR: 'jo',
+  COL: 'co', COD: 'cd', POR: 'pt', UZB: 'uz',
+  ENG: 'gb-eng', GHA: 'gh', PAN: 'pa', CRO: 'hr',
+}
+
 // m(home, away, homeScore, awayScore, played)
 const m = (h, a, hs, as, played) => ({ h, a, hs, as, played })
 
