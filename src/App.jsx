@@ -30,14 +30,27 @@ function Stepper({ value, onChange }) {
   )
 }
 
-function Fixture({ group, idx, mt, scores, setScore }) {
+function Fixture({ group, idx, mt, scores, setScore, toggleActive }) {
   const key = group.id + '-' + idx
   const s = scores[key]
   const hs = s ? s.hs : mt.hs
   const as = s ? s.as : mt.as
-  const cls = mt.played ? 'played' : hs > as ? 'win-h' : hs < as ? 'win-a' : ''
+  const active = mt.played || (s ? !!s.active : false)
+  const cls = mt.played
+    ? 'played'
+    : !active
+    ? 'inactive'
+    : hs > as
+    ? 'win-h'
+    : hs < as
+    ? 'win-a'
+    : ''
   return (
-    <div className={'fx ' + cls}>
+    <div
+      className={'fx ' + cls}
+      onClick={mt.played ? undefined : () => toggleActive(key)}
+      title={mt.played ? undefined : active ? 'Click to exclude this result' : 'Click to include this result'}
+    >
       <span className="side home">
         <Flag code={mt.h} />
         <span className="tname">{NAME[mt.h]}</span>
@@ -49,7 +62,7 @@ function Fixture({ group, idx, mt, scores, setScore }) {
           {as} <span className="ft">FT</span>
         </span>
       ) : (
-        <span className="score">
+        <span className="score" onClick={active ? (e) => e.stopPropagation() : undefined}>
           <Stepper value={hs} onChange={(v) => setScore(key, v, as)} />
           <span className="dash">–</span>
           <Stepper value={as} onChange={(v) => setScore(key, hs, v)} />
@@ -63,7 +76,7 @@ function Fixture({ group, idx, mt, scores, setScore }) {
   )
 }
 
-function GroupCard({ group, scores, setScore }) {
+function GroupCard({ group, scores, setScore, toggleActive }) {
   const rows = useMemo(() => computeRows(group, scores), [group, scores])
   const gp = scoreGroup(group, rows)
   const remaining = group.matches.filter((x) => !x.played).length
@@ -162,11 +175,19 @@ function GroupCard({ group, scores, setScore }) {
         </tbody>
       </table>
       <div className="fixtures">
-        <div className="fx-h">{allPlayed ? 'Results' : 'Remaining — set the scores'}</div>
+        <div className="fx-h">{allPlayed ? 'Results' : 'Remaining — click a game to include it'}</div>
         {group.matches.map(
           (mt, idx) =>
             !mt.played && (
-              <Fixture key={idx} group={group} idx={idx} mt={mt} scores={scores} setScore={setScore} />
+              <Fixture
+                key={idx}
+                group={group}
+                idx={idx}
+                mt={mt}
+                scores={scores}
+                setScore={setScore}
+                toggleActive={toggleActive}
+              />
             ),
         )}
       </div>
@@ -177,7 +198,11 @@ function GroupCard({ group, scores, setScore }) {
 export default function App() {
   const [scores, setScores] = useState(() => initScores(null))
   const setScore = useCallback(
-    (key, hs, as) => setScores((p) => ({ ...p, [key]: { hs, as } })),
+    (key, hs, as) => setScores((p) => ({ ...p, [key]: { ...p[key], hs, as, active: true } })),
+    [],
+  )
+  const toggleActive = useCallback(
+    (key) => setScores((p) => ({ ...p, [key]: { ...p[key], active: !p[key].active } })),
     [],
   )
 
@@ -230,7 +255,13 @@ export default function App() {
 
       <div className="grid">
         {GROUPS.map((g) => (
-          <GroupCard key={g.id} group={g} scores={scores} setScore={setScore} />
+          <GroupCard
+            key={g.id}
+            group={g}
+            scores={scores}
+            setScore={setScore}
+            toggleActive={toggleActive}
+          />
         ))}
       </div>
 

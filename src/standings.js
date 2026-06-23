@@ -10,6 +10,8 @@ export function computeRows(group, scores) {
       if (!stat[c]) stat[c] = { code: c, P: 0, W: 0, D: 0, L: 0, GF: 0, GA: 0, Pts: 0 }
     })
     const s = scores[group.id + '-' + i]
+    // Unplayed games only count once the user has activated them.
+    if (!mt.played && !(s && s.active)) return
     const hs = s ? s.hs : mt.hs
     const as = s ? s.as : mt.as
     const H = stat[mt.h]
@@ -31,6 +33,7 @@ export function computeRows(group, scores) {
     group.matches.forEach((mt, i) => {
       if (!set.has(mt.h) || !set.has(mt.a)) return
       const s = scores[group.id + '-' + i]
+      if (!mt.played && !(s && s.active)) return
       const hs = s ? s.hs : mt.hs
       const as = s ? s.as : mt.as
       mini[mt.h].GF += hs; mini[mt.a].GF += as
@@ -89,7 +92,8 @@ export function initScores(transform) {
         s[key] = { hs: mt.hs, as: mt.as }
       } else {
         const d = transform && transform[key]
-        s[key] = { hs: d ? d[0] : 0, as: d ? d[1] : 0 }
+        // Preset (DREAM) games are activated; a plain reset leaves them inactive.
+        s[key] = { hs: d ? d[0] : 0, as: d ? d[1] : 0, active: !!d }
       }
     }),
   )

@@ -444,6 +444,21 @@ tr.wrong .pick-note {
   justify-content: flex-end;
   text-align: right;
 }
+.fx:not(.played) {
+  cursor: pointer;
+  border-radius: 8px;
+  transition: opacity 0.15s, background 0.15s;
+}
+.fx.inactive {
+  opacity: 0.4;
+}
+.fx.inactive:hover {
+  opacity: 0.7;
+  background: var(--line-soft);
+}
+.fx.inactive .stepper {
+  pointer-events: none;
+}
 .fx.win-h .home .tname,
 .fx.win-a .away .tname {
   color: var(--ink);
