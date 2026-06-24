@@ -82,7 +82,7 @@ export const GROUPS = [
     m('ARG', 'JOR', 0, 0, false), m('AUT', 'DZA', 0, 0, false)] },
   { id: 'K', picks: ['POR', 'COL', 'UZB', 'COD'], matches: [
     m('COL', 'UZB', 1, 0, true), m('POR', 'COD', 0, 0, true),
-    m('POR', 'UZB', 5, 0, true), m('COL', 'COD', 0, 0, false),
+    m('POR', 'UZB', 5, 0, true), m('COL', 'COD', 1, 0, true),
     m('COL', 'POR', 0, 0, false), m('COD', 'UZB', 0, 0, false)] },
   { id: 'L', picks: ['ENG', 'CRO', 'GHA', 'PAN'], matches: [
     m('ENG', 'CRO', 4, 2, true), m('GHA', 'PAN', 1, 0, true),
