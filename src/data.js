@@ -140,8 +140,9 @@ export const TIPS = {
   ] },
   E: { tagline: 'ceiling 3/7 · Germany runs it', bullets: [
     { label: 'Nearly dead', text: 'Ecuador 1st and Germany 2nd are all but gone — Germany has 6 points and a +7 goal difference.' },
-    { label: 'Safe 1 pt', text: 'Ivory Coast to beat Curaçao → Curaçao finishes 4th (your 4th-place pick).' },
-    { label: 'Long shot to 3', text: 'Ecuador stuns Germany AND Ivory Coast beats Curaçao by enough to leap Germany on GD → Germany slips to 2nd (worth 2) with Curaçao 4th. Very unlikely.' },
+    { label: 'Safe 1 pt', text: 'If Germany handles Ecuador (likely), root for Ivory Coast to beat Curaçao → Curaçao 4th.' },
+    { label: 'Best realistic 2 pts', text: 'Ecuador to beat Germany by 2+ AND Ivory Coast to only draw Curaçao → Ecuador edges Ivory Coast on GD for 2nd, leaving Ivory Coast 3rd and Curaçao 4th (your 3rd + 4th picks). The 2-goal margin is what wins the GD tiebreak — a 1-goal win leaves Ivory Coast ahead.' },
+    { label: 'Long shot to 3', text: 'Ecuador beats Germany AND Ivory Coast beats Curaçao by enough to leap Germany on GD → Germany slips to 2nd (worth 2) with Curaçao 4th. Very unlikely.' },
   ] },
   F: { tagline: 'ceiling 7/7 · needs a Sweden upset', bullets: [
     { label: 'Root for (7/7)', text: 'Netherlands to beat Tunisia (1st, Tunisia 4th) AND Sweden to beat Japan (Sweden 2nd, Japan 3rd).' },
