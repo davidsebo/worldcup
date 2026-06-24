@@ -124,7 +124,7 @@ export const TIPS = {
   A: { tagline: 'ceiling 7/7 · Mexico & Korea hold the keys', bullets: [
     { label: 'Clean 7/7', text: 'Mexico draw + Korea win, or Mexico draw + Korea draw — either locks all four regardless of scores.' },
     { label: 'Also 7/7 (watch margins)', text: 'Mexico win + Korea win works too, as long as Mexico does NOT beat Czechia by 2+ more goals than Korea beats South Africa (keeps Czechia ahead of South Africa for 3rd).' },
-    { label: 'Even a Mexico loss', text: 'Mexico can lose and still go 7/7 if it loses by just 1 and Korea draws or wins by 1 (Mexico stays 1st over Korea on the head-to-head/GD).' },
+    { label: 'Even a Mexico loss', text: "Mexico can lose by 1 and still go 7/7 — but Korea must then WIN, or draw a scoring game. A Korea 0-0 fails (Czechia leapfrogs Korea for 2nd); Korea's draw has to at least match Czechia's goal tally (e.g. 1-1 if Czechia wins 1-0, 2-2 if Czechia wins 2-1)." },
   ] },
   B: { tagline: 'ceiling 7/7 · one make-or-break game', bullets: [
     { label: 'Root for (7/7)', text: 'Switzerland to beat Canada (locks Switzerland 1st, Canada 2nd) AND Qatar to beat Bosnia (Qatar 3rd, Bosnia 4th).' },
