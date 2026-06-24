@@ -86,7 +86,7 @@ export const GROUPS = [
     m('COL', 'POR', 0, 0, false), m('COD', 'UZB', 0, 0, false)] },
   { id: 'L', picks: ['ENG', 'CRO', 'GHA', 'PAN'], matches: [
     m('ENG', 'CRO', 4, 2, true), m('GHA', 'PAN', 1, 0, true),
-    m('ENG', 'GHA', 0, 0, false), m('PAN', 'CRO', 0, 0, false),
+    m('ENG', 'GHA', 0, 0, true), m('PAN', 'CRO', 0, 1, true),
     m('ENG', 'PAN', 0, 0, false), m('GHA', 'CRO', 0, 0, false)] },
 ]
 
