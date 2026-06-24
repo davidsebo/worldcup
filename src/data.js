@@ -119,55 +119,57 @@ export const PICKER = {
 }
 
 // Strategy tooltips per group — shown via the "?" icon in each header.
+// Two games left in every group; best-case (ceiling) scenarios below.
 export const TIPS = {
-  A: { tagline: 'ceiling 7/7 · all live', bullets: [
-    { label: 'Root for', text: 'Mexico to win or draw, and S. Korea to win or draw — that combo tends to lock all four in order.' },
-    { label: 'Watch out', text: 'Czechia beating Mexico and Korea winning big can flip the top two.' },
+  A: { tagline: 'ceiling 7/7 · Mexico & Korea hold the keys', bullets: [
+    { label: 'Clean 7/7', text: 'Mexico draw + Korea win, or Mexico draw + Korea draw — either locks all four regardless of scores.' },
+    { label: 'Also 7/7 (watch margins)', text: 'Mexico win + Korea win works too, as long as Mexico does NOT beat Czechia by 2+ more goals than Korea beats South Africa (keeps Czechia ahead of South Africa for 3rd).' },
+    { label: 'Even a Mexico loss', text: 'Mexico can lose and still go 7/7 if it loses by just 1 and Korea draws or wins by 1 (Mexico stays 1st over Korea on the head-to-head/GD).' },
   ] },
   B: { tagline: 'ceiling 7/7 · one make-or-break game', bullets: [
-    { label: 'Root for', text: 'Switzerland to beat Canada — a draw or Canada win flips both top picks (Canada leads on goal difference). This one result swings 5 points.' },
-    { label: 'Bonus', text: 'Qatar to upset Bosnia (your 3rd/4th are the reverse of the current order).' },
+    { label: 'Root for (7/7)', text: 'Switzerland to beat Canada (locks Switzerland 1st, Canada 2nd) AND Qatar to beat Bosnia (Qatar 3rd, Bosnia 4th).' },
+    { label: 'Most important', text: 'The Switzerland win is the 5-pointer — a draw or Canada win flips the top two, since Canada leads on goal difference.' },
   ] },
-  C: { tagline: "ceiling 7/7 · favorites' friend", bullets: [
-    { label: 'Root for', text: 'Brazil to beat Scotland, and Morocco to beat Haiti — favorites winning nails all four.' },
-    { label: 'Watch out', text: 'If Morocco outscores a slipping Brazil, they swap 1st and 2nd.' },
+  C: { tagline: 'ceiling 7/7 · favorites hold', bullets: [
+    { label: 'Clean 7/7', text: 'Brazil win + Morocco draw, or Brazil draw + Morocco draw — either nails all four.' },
+    { label: 'Also 7/7 (watch margins)', text: "Brazil win + Morocco win works as long as Brazil's winning margin is at least Morocco's, so Brazil stays ahead on goal difference for 1st." },
   ] },
-  D: { tagline: 'ceiling 4/7 · partly locked out', bullets: [
-    { label: 'Root for', text: 'USA to win or draw (locks 1st), and Australia to beat or draw Paraguay (puts Paraguay 3rd).' },
-    { label: 'Dead', text: "Türkiye 2nd (0 points, can't climb) and Australia 4th (won't fall that far). Don't chase them." },
+  D: { tagline: 'ceiling 4/7 · USA locked, Türkiye dead', bullets: [
+    { label: 'Locked / dead', text: "USA is 1st barring a blowout loss. Türkiye 2nd is dead — 0 points, can't catch the field." },
+    { label: 'The 4th point', text: 'Australia to beat or draw Paraguay → Australia 2nd, Paraguay 3rd, Türkiye 4th. That bags Paraguay’s 3rd-place pick. Australia 4th isn’t reachable, so 4/7 is the max.' },
   ] },
-  E: { tagline: 'ceiling 2/7 · weakest group', bullets: [
-    { label: 'Dead', text: "Ecuador 1st (can't catch Germany) and Germany 2nd (Germany wins the group)." },
-    { label: 'Long shot for 2 pts', text: 'Ecuador to beat Germany by 2+ goals (the margin matters for the goal-difference tiebreaker with Ivory Coast) and Ivory Coast to only draw Curaçao → Ivory Coast 3rd, Curaçao 4th.' },
-    { label: 'Safe single point', text: 'Curaçao loses → Curaçao 4th.' },
+  E: { tagline: 'ceiling 3/7 · Germany runs it', bullets: [
+    { label: 'Nearly dead', text: 'Ecuador 1st and Germany 2nd are all but gone — Germany has 6 points and a +7 goal difference.' },
+    { label: 'Safe 1 pt', text: 'Ivory Coast to beat Curaçao → Curaçao finishes 4th (your 4th-place pick).' },
+    { label: 'Long shot to 3', text: 'Ecuador stuns Germany AND Ivory Coast beats Curaçao by enough to leap Germany on GD → Germany slips to 2nd (worth 2) with Curaçao 4th. Very unlikely.' },
   ] },
   F: { tagline: 'ceiling 7/7 · needs a Sweden upset', bullets: [
-    { label: 'Root for', text: 'Netherlands to beat Tunisia (lock 1st), and Sweden to upset Japan (gives Sweden 2nd, Japan 3rd).' },
-    { label: 'If Japan beats Sweden instead', text: 'You keep only Netherlands 1st + Tunisia 4th (4 pts).' },
+    { label: 'Root for (7/7)', text: 'Netherlands to beat Tunisia (1st, Tunisia 4th) AND Sweden to beat Japan (Sweden 2nd, Japan 3rd).' },
+    { label: 'If Japan wins instead', text: 'You keep only Netherlands 1st + Tunisia 4th (4 pts).' },
   ] },
-  G: { tagline: 'ceiling 5/7 · top and bottom picks fight', bullets: [
-    { label: 'Root for (the 5-pt play)', text: 'Belgium to beat New Zealand by 3 goals, and Egypt to draw Iran → Belgium 1st, Egypt 2nd.' },
-    { label: 'Important', text: 'If Egypt wins, it takes 1st and you lose both top picks.' },
-    { label: "Why you can't get more", text: 'NZ 3rd / Iran 4th would need NZ to steal points off Belgium — which kills Belgium 1st.' },
+  G: { tagline: 'ceiling 5/7 · the Belgium–Egypt play', bullets: [
+    { label: 'Root for (5 pts)', text: 'Egypt to DRAW Iran (keeps Egypt 2nd) and Belgium to beat New Zealand by 3+ (Belgium jumps Egypt on GD for 1st) → Belgium 1st, Egypt 2nd.' },
+    { label: 'Why not 7', text: 'In that scenario Iran finishes 3rd and New Zealand 4th — the reverse of your 3rd/4th picks. It’s the top two or nothing.' },
   ] },
-  H: { tagline: 'ceiling 5/7 · updated → root for two draws', bullets: [
-    { label: 'Root for', text: 'Both games drawn → Spain 1st, Uruguay 2nd. Uruguay edges Cape Verde for 2nd on goals scored.' },
-    { label: 'Goals caveat', text: "Keep Uruguay's draw at least as high-scoring as Cape Verde's — two 0-0s is cleanest. (If Cape Verde's draw outscores Uruguay's by 2+, Cape Verde grabs 2nd.)" },
-    { label: "Why you can't get more", text: "In that two-draw world Cape Verde finishes 3rd, Saudi 4th (reverse of your picks). Saudi can only pass Cape Verde by beating them, which would also bump Uruguay out of 2nd — so it's the top two (5 pts) or the bottom two, never both. Take the 5." },
+  H: { tagline: 'ceiling 5/7 · root for two draws', bullets: [
+    { label: 'Root for (5 pts)', text: 'Both games drawn → Spain 1st, Uruguay 2nd (Uruguay edges Cape Verde on goals scored).' },
+    { label: 'Goals caveat', text: "Keep Uruguay's draw with Spain at least as high-scoring as Cape Verde's draw with Saudi — two 0-0s is cleanest. If Cape Verde's draw outscores Uruguay's, Cape Verde grabs 2nd." },
+    { label: 'Why not 7', text: 'In the two-draw world Cape Verde is 3rd and Saudi 4th — reverse of your picks. It’s the top two (5) or the bottom two, never both.' },
   ] },
   I: { tagline: 'ceiling 7/7 · great spot', bullets: [
-    { label: 'Root for', text: 'France to win or draw (a draw still gives France 1st on GD), and Senegal to win or draw → Senegal 3rd, Iraq 4th.' },
-    { label: 'Note', text: 'Only a Norway win or an Iraq win breaks anything.' },
+    { label: 'Root for (7/7)', text: 'France to win or draw, and Senegal to win or draw → all four land (Senegal 3rd, Iraq 4th).' },
+    { label: 'Breaks it', text: 'Only a Norway win over France, or an Iraq win over Senegal, spoils it.' },
   ] },
-  J: { tagline: 'ceiling 7/7 · clean', bullets: [
-    { label: 'Root for', text: 'Argentina to beat Jordan (locks 1st + Jordan 4th), and Austria to beat Algeria → Austria 2nd, Algeria 3rd.' },
-    { label: 'Note', text: 'Only an Algeria win swaps your middle two.' },
+  J: { tagline: 'ceiling 7/7 · Austria is the swing', bullets: [
+    { label: 'Root for (7/7)', text: 'Austria to beat or draw Algeria (locks Austria 2nd, Algeria 3rd) and Argentina to beat or draw Jordan (1st, Jordan 4th).' },
+    { label: 'Breaks it', text: 'An Algeria win takes 2nd from Austria. Argentina is 1st unless it loses while Austria wins big.' },
   ] },
-  K: { tagline: 'ceiling 7/7 · Portugal won 5-0, one game left for them', bullets: [
-    { label: 'Root for', text: 'Portugal to beat Colombia in their finale (locks 1st — they already beat Uzbekistan 5-0) · Colombia to beat or draw DR Congo (either gets them 2nd) · Uzbekistan to beat DR Congo → Uzbekistan 3rd, DR Congo 4th.' },
+  K: { tagline: 'ceiling 7/7 · two must-win games', bullets: [
+    { label: 'Root for (7/7)', text: 'Portugal to beat Colombia (Portugal 1st, Colombia 2nd) AND Uzbekistan to beat DR Congo (Uzbekistan 3rd, DR Congo 4th).' },
+    { label: 'Note', text: 'Both are must-wins — a Portugal slip hands Colombia 1st, and only an Uzbekistan win separates 3rd from 4th.' },
   ] },
-  L: { tagline: 'ceiling 7/7 · open, Croatia is the swing', bullets: [
-    { label: 'Root for', text: 'England to win both (1st) · Croatia to win both (beat Panama, then Ghana) to climb from 0 to 2nd · Ghana losing to both England and Croatia → Ghana 3rd · Panama losing out → 4th.' },
-    { label: 'Note', text: 'Leans entirely on Croatia winning twice.' },
+  L: { tagline: 'ceiling 7/7 · Croatia is the swing', bullets: [
+    { label: 'Root for (7/7)', text: 'England to beat Panama (1st) and Croatia to beat Ghana (Croatia 2nd, Ghana 3rd, Panama 4th).' },
+    { label: 'Breaks it', text: 'A Ghana win or draw flips 2nd and 3rd.' },
   ] },
 }
