@@ -133,6 +133,7 @@ export const TIPS = {
   C: { tagline: 'ceiling 7/7 · favorites hold', bullets: [
     { label: 'Clean 7/7', text: 'Brazil win + Morocco draw, or Brazil draw + Morocco draw — either nails all four.' },
     { label: 'Also 7/7 (watch margins)', text: "Brazil win + Morocco win works as long as Brazil's winning margin is at least Morocco's, so Brazil stays ahead on goal difference for 1st." },
+    { label: 'Also possible', text: 'Brazil winning or drawing while Morocco loses can also land 7/7 in some cases, but it hinges on total goals across the group — too situational to map out.' },
   ] },
   D: { tagline: 'ceiling 4/7 · USA locked, Türkiye dead', bullets: [
     { label: 'Locked / dead', text: "USA is 1st barring a blowout loss. Türkiye 2nd is dead — 0 points, can't catch the field." },
